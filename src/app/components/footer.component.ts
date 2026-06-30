@@ -33,8 +33,8 @@ import { MatIconModule } from '@angular/material/icon';
           <div>
             <h4 class="text-white font-bold mb-4 font-display">Resources</h4>
             <ul class="space-y-2 text-sm text-zinc-400">
-              <li><a href="#" class="hover:text-emerald-400 transition-colors">Architecture Documentation</a></li>
-              <li><a href="#" class="hover:text-emerald-400 transition-colors">Research Validation</a></li>
+              <li><a href="#architecture-section" class="hover:text-emerald-400 transition-colors">Architecture Documentation</a></li>
+              <li><a href="#references-section" class="hover:text-emerald-400 transition-colors">Research Validation</a></li>
               <li><a href="#" class="hover:text-emerald-400 transition-colors">Hardware Schematics</a></li>
               <li><a href="#" class="hover:text-emerald-400 transition-colors">API Reference</a></li>
             </ul>

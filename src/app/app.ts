@@ -1,12 +1,15 @@
-import { ChangeDetectionStrategy, Component, AfterViewInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, AfterViewInit, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { HeroComponent } from './components/hero.component';
 import { StatsComponent } from './components/stats.component';
 import { ArchitectureComponent } from './components/architecture.component';
+import { NetworkVisualizerComponent } from './components/network-visualizer.component';
 import { DashboardPreviewComponent } from './components/dashboard-preview.component';
 import { EvaluationComponent } from './components/evaluation.component';
+import { ReferencesComponent } from './components/references.component';
 import { FooterComponent } from './components/footer.component';
 import { animate, inView } from 'motion';
+import Lenis from 'lenis';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -16,8 +19,10 @@ import { animate, inView } from 'motion';
     HeroComponent,
     StatsComponent,
     ArchitectureComponent,
+    NetworkVisualizerComponent,
     DashboardPreviewComponent,
     EvaluationComponent,
+    ReferencesComponent,
     FooterComponent
   ],
   template: `
@@ -29,10 +34,12 @@ import { animate, inView } from 'motion';
           NeuroTremor
         </div>
         <div class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
-          <a href="#stats-section" class="hover:text-white transition-colors">Impact</a>
-          <a href="#architecture-section" class="hover:text-white transition-colors">Architecture</a>
-          <a href="#dashboard-section" class="hover:text-white transition-colors">Dashboard</a>
-          <a href="#evaluation-section" class="hover:text-white transition-colors">Evaluation</a>
+          <a href="#stats-section" [class.text-white]="activeSection() === 'stats-section'" class="hover:text-white transition-colors">Impact</a>
+          <a href="#architecture-section" [class.text-white]="activeSection() === 'architecture-section'" class="hover:text-white transition-colors">Architecture</a>
+          <a href="#ai-engine-section" [class.text-white]="activeSection() === 'ai-engine-section'" class="hover:text-white transition-colors">AI Engine</a>
+          <a href="#dashboard-section" [class.text-white]="activeSection() === 'dashboard-section'" class="hover:text-white transition-colors">Dashboard</a>
+          <a href="#evaluation-section" [class.text-white]="activeSection() === 'evaluation-section'" class="hover:text-white transition-colors">Evaluation</a>
+          <a href="#references-section" [class.text-white]="activeSection() === 'references-section'" class="hover:text-white transition-colors">References</a>
         </div>
         <div>
           <button class="px-4 py-2 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full text-sm font-medium hover:bg-emerald-500/20 transition-colors">
@@ -46,8 +53,10 @@ import { animate, inView } from 'motion';
       <div class="section-container"><app-hero></app-hero></div>
       <div class="section-container"><app-stats></app-stats></div>
       <div class="section-container"><app-architecture></app-architecture></div>
+      <div class="section-container"><app-network-visualizer></app-network-visualizer></div>
       <div class="section-container"><app-dashboard-preview></app-dashboard-preview></div>
       <div class="section-container"><app-evaluation></app-evaluation></div>
+      <div class="section-container"><app-references></app-references></div>
     </main>
     
     <div class="section-container"><app-footer></app-footer></div>
@@ -61,7 +70,30 @@ import { animate, inView } from 'motion';
   `]
 })
 export class App implements AfterViewInit {
+  activeSection = signal<string>('');
+
   ngAfterViewInit() {
+    // Initialize Lenis smooth scrolling
+    const lenis = new Lenis({
+      lerp: 0.08,
+      smoothWheel: true,
+    });
+
+    lenis.on('scroll', () => {
+      const scrollY = window.scrollY;
+      const parallaxEls = document.querySelectorAll('.hero-bg-parallax') as NodeListOf<HTMLElement>;
+      parallaxEls.forEach(el => {
+        const speed = parseFloat(el.getAttribute('data-speed') || '0.3');
+        el.style.transform = `translateY(${scrollY * speed}px)`;
+      });
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
     // Animate Navbar
     animate('#main-nav', { opacity: [0, 1], y: [-16, 0] }, { duration: 0.8, ease: [0.22, 1, 0.36, 1] });
 
@@ -75,5 +107,24 @@ export class App implements AfterViewInit {
         );
       }, { margin: '-10% 0px -10% 0px' });
     });
+
+    // Track active section for navigation highlighting
+    const sections = ['stats-section', 'architecture-section', 'ai-engine-section', 'dashboard-section', 'evaluation-section', 'references-section'];
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          this.activeSection.set(entry.target.id);
+        }
+      });
+    }, { threshold: 0.3 }); // Trigger when 30% of the section is visible
+
+    // We use setTimeout to ensure child components have rendered their IDs
+    setTimeout(() => {
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el);
+      });
+    }, 100);
   }
 }
