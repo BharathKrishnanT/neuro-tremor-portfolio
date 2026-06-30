@@ -8,31 +8,31 @@ import { animate, inView, stagger } from 'motion';
   imports: [MatIconModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <section class="py-32 bg-zinc-900 relative" id="evaluation-section">
+    <section class="py-32 bg-white relative" id="evaluation-section">
       <div class="container mx-auto px-6 max-w-7xl">
         <div class="text-center mb-20 eval-header opacity-0">
-          <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">Why NeuroTremor Wins</h2>
-          <p class="text-zinc-400 text-lg max-w-2xl mx-auto">Engineered to exceed evaluation criteria across innovation, technical complexity, and societal impact.</p>
+          <h2 class="text-4xl md:text-5xl font-display font-bold text-zinc-900 mb-6">Why NeuroTremor Wins</h2>
+          <p class="text-zinc-600 text-lg max-w-2xl mx-auto">Engineered to exceed evaluation criteria across innovation, technical complexity, and societal impact.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           @for (crit of criteria; track crit.title) {
-            <div class="glass-card p-8 eval-card opacity-0 relative overflow-hidden group hover:scale-[1.02] hover:shadow-2xl hover:shadow-white/5 transition-all duration-300">
+            <div class="glass-card p-8 eval-card opacity-0 relative overflow-hidden group hover:scale-[1.02] hover:shadow-2xl hover:shadow-zinc-200 transition-all duration-300 border border-zinc-200 bg-zinc-50">
               <!-- Animated Background Gradient -->
-              <div class="absolute inset-0 bg-gradient-to-br {{ crit.color }} opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+              <div class="absolute inset-0 bg-gradient-to-br {{ crit.color }} opacity-0 group-hover:opacity-5 transition-opacity duration-500"></div>
               
               <div class="relative z-10">
-                <mat-icon class="text-3xl mb-4 text-white/80">{{ crit.icon }}</mat-icon>
-                <h3 class="text-xl font-display font-bold text-white mb-3">{{ crit.title }}</h3>
-                <p class="text-zinc-400 text-sm leading-relaxed mb-6">{{ crit.desc }}</p>
+                <mat-icon class="text-3xl mb-4 text-zinc-700">{{ crit.icon }}</mat-icon>
+                <h3 class="text-xl font-display font-bold text-zinc-900 mb-3">{{ crit.title }}</h3>
+                <p class="text-zinc-600 text-sm leading-relaxed mb-6">{{ crit.desc }}</p>
                 
                 <div class="space-y-2">
                   <div class="flex justify-between text-xs font-mono text-zinc-500">
                     <span>Score Potential</span>
                     <span>10/10</span>
                   </div>
-                  <div class="h-1 bg-white/10 rounded-full overflow-hidden">
-                    <div class="h-full bg-white/80 rounded-full" style="width: 100%"></div>
+                  <div class="h-1 bg-zinc-200 rounded-full overflow-hidden">
+                    <div class="h-full bg-zinc-800 rounded-full" style="width: 100%"></div>
                   </div>
                 </div>
               </div>

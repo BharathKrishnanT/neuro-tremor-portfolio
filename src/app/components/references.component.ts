@@ -9,28 +9,28 @@ import { animate, inView, stagger } from 'motion';
   imports: [CommonModule, MatIconModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <section class="py-32 bg-zinc-950 relative border-t border-white/5" id="references-section">
+    <section class="py-32 bg-zinc-50 relative border-t border-zinc-200" id="references-section">
       <div class="container mx-auto px-6 max-w-7xl">
         <div class="text-center mb-20 ref-header opacity-0">
-          <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">Research Validation</h2>
-          <p class="text-zinc-400 text-lg max-w-3xl mx-auto">NeuroTremor is built upon peer-reviewed clinical research, digital biomarker studies, and state-of-the-art machine learning architectures.</p>
+          <h2 class="text-4xl md:text-5xl font-display font-bold text-zinc-900 mb-6">Research Validation</h2>
+          <p class="text-zinc-600 text-lg max-w-3xl mx-auto">NeuroTremor is built upon peer-reviewed clinical research, digital biomarker studies, and state-of-the-art machine learning architectures.</p>
         </div>
 
         <div class="mb-24">
-          <h3 class="text-2xl font-display font-bold text-white mb-8 border-b border-white/10 pb-4 flex items-center gap-2">
-            <mat-icon class="text-emerald-400">menu_book</mat-icon> Core Literature
+          <h3 class="text-2xl font-display font-bold text-zinc-900 mb-8 border-b border-zinc-200 pb-4 flex items-center gap-2">
+            <mat-icon class="text-emerald-500">menu_book</mat-icon> Core Literature
           </h3>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             @for (paper of papers; track paper.title) {
-              <a [href]="paper.link" target="_blank" rel="noopener noreferrer" class="glass-card p-6 ref-card opacity-0 group block cursor-pointer hover:scale-[1.02] hover:shadow-2xl hover:shadow-emerald-500/5 transition-all duration-300">
+              <a [href]="paper.link" target="_blank" rel="noopener noreferrer" class="glass-card p-6 ref-card opacity-0 group block cursor-pointer hover:scale-[1.02] hover:shadow-2xl hover:shadow-emerald-500/5 transition-all duration-300 border border-zinc-200 bg-white">
                 <div class="flex justify-between items-start mb-4">
-                  <h4 class="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">{{ paper.title }}</h4>
-                  <mat-icon class="text-zinc-500 group-hover:text-emerald-400 transition-colors">open_in_new</mat-icon>
+                  <h4 class="text-lg font-bold text-zinc-900 group-hover:text-emerald-600 transition-colors">{{ paper.title }}</h4>
+                  <mat-icon class="text-zinc-400 group-hover:text-emerald-500 transition-colors">open_in_new</mat-icon>
                 </div>
-                <div class="text-sm text-zinc-400 mb-4">{{ paper.authors }}</div>
+                <div class="text-sm text-zinc-500 mb-4">{{ paper.authors }}</div>
                 <div class="flex flex-wrap gap-2">
                   @for (tag of paper.tags; track tag) {
-                    <span class="text-xs font-mono px-2 py-1 bg-white/5 rounded text-zinc-300 border border-white/10">{{ tag }}</span>
+                    <span class="text-xs font-mono px-2 py-1 bg-zinc-100 rounded text-zinc-600 border border-zinc-200">{{ tag }}</span>
                   }
                 </div>
               </a>
@@ -39,25 +39,25 @@ import { animate, inView, stagger } from 'motion';
         </div>
 
         <div>
-          <h3 class="text-2xl font-display font-bold text-white mb-8 border-b border-white/10 pb-4 flex items-center gap-2">
-            <mat-icon class="text-cyan-400">stacked_bar_chart</mat-icon> Literature Comparison
+          <h3 class="text-2xl font-display font-bold text-zinc-900 mb-8 border-b border-zinc-200 pb-4 flex items-center gap-2">
+            <mat-icon class="text-cyan-500">stacked_bar_chart</mat-icon> Literature Comparison
           </h3>
-          <div class="overflow-x-auto glass-panel">
+          <div class="overflow-x-auto glass-panel bg-white border border-zinc-200">
             <table class="w-full text-left text-sm whitespace-nowrap">
-              <thead class="bg-white/5 border-b border-white/10 text-zinc-300">
+              <thead class="bg-zinc-50 border-b border-zinc-200 text-zinc-700">
                 <tr>
                   <th class="px-6 py-4 font-medium">Study & Method</th>
                   <th class="px-6 py-4 font-medium">Sensors & Models</th>
                   <th class="px-6 py-4 font-medium">Performance & Advantages</th>
                   <th class="px-6 py-4 font-medium">Limitations</th>
-                  <th class="px-6 py-4 font-medium text-emerald-400">Our Improvement</th>
+                  <th class="px-6 py-4 font-medium text-emerald-600">Our Improvement</th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-white/5 text-zinc-400">
+              <tbody class="divide-y divide-zinc-200 text-zinc-600">
                 @for (comp of comparisons; track comp.study) {
-                  <tr class="hover:bg-white/5 transition-colors comp-row opacity-0">
+                  <tr class="hover:bg-zinc-50 transition-colors comp-row opacity-0">
                     <td class="px-6 py-4">
-                      <div class="font-medium text-zinc-200">{{ comp.study }}</div>
+                      <div class="font-medium text-zinc-900">{{ comp.study }}</div>
                       <div class="text-xs text-zinc-500 mt-1">{{ comp.method }}</div>
                     </td>
                     <td class="px-6 py-4">
@@ -65,14 +65,14 @@ import { animate, inView, stagger } from 'motion';
                       <div class="text-xs text-zinc-500 mt-1 font-mono">{{ comp.aiModel }} | Dataset: {{ comp.dataset }}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-normal min-w-[200px]">
-                      <div class="font-medium text-zinc-300">{{ comp.accuracy }}</div>
+                      <div class="font-medium text-zinc-700">{{ comp.accuracy }}</div>
                       <div class="text-xs text-zinc-500 mt-1">{{ comp.advantages }}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-normal min-w-[200px]">{{ comp.limitations }}</td>
-                    <td class="px-6 py-4 text-emerald-400/90 whitespace-normal min-w-[250px]">
+                    <td class="px-6 py-4 text-emerald-600 whitespace-normal min-w-[250px]">
                       {{ comp.improvement }}
                       @if (comp.linkText) {
-                        <a [href]="comp.linkUrl" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-emerald-400 hover:text-emerald-300 ml-1 underline decoration-emerald-500/30 underline-offset-2">
+                        <a [href]="comp.linkUrl" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-emerald-600 hover:text-emerald-500 ml-1 underline decoration-emerald-200 underline-offset-2">
                           ({{ comp.linkText }})
                         </a>
                       }

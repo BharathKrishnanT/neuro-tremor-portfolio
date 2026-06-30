@@ -8,21 +8,21 @@ import { animate, inView, stagger } from 'motion';
   imports: [MatIconModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <section class="py-24 bg-zinc-950 relative border-t border-white/5" id="stats-section">
+    <section class="py-24 bg-white relative border-t border-zinc-200" id="stats-section">
       <div class="container mx-auto px-6 max-w-7xl">
         <div class="text-center mb-16 stat-header opacity-0">
-          <h2 class="text-3xl md:text-5xl font-display font-bold text-white mb-4">Why This Matters</h2>
-          <p class="text-zinc-400 text-lg">The global impact of Parkinson's Disease requires scalable, accessible solutions.</p>
+          <h2 class="text-3xl md:text-5xl font-display font-bold text-zinc-900 mb-4">Why This Matters</h2>
+          <p class="text-zinc-600 text-lg">The global impact of Parkinson's Disease requires scalable, accessible solutions.</p>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           @for (stat of stats; track stat.title) {
-            <div class="glass-card p-8 stat-card opacity-0 translate-y-8 flex flex-col justify-between">
-              <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-6">
-                <mat-icon class="text-emerald-400">{{ stat.icon }}</mat-icon>
+            <div class="glass-card p-8 stat-card opacity-0 translate-y-8 flex flex-col justify-between border border-zinc-200 bg-zinc-50/50">
+              <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center mb-6">
+                <mat-icon class="text-emerald-600">{{ stat.icon }}</mat-icon>
               </div>
-              <div class="text-4xl font-display font-bold text-white mb-2">{{ stat.value }}</div>
-              <div class="text-zinc-400 font-medium leading-tight">{{ stat.title }}</div>
+              <div class="text-4xl font-display font-bold text-zinc-900 mb-2">{{ stat.value }}</div>
+              <div class="text-zinc-600 font-medium leading-tight">{{ stat.title }}</div>
             </div>
           }
         </div>

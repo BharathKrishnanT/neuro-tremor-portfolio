@@ -24,22 +24,22 @@ interface Link {
   imports: [CommonModule, MatIconModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <section class="py-32 bg-zinc-950 relative border-t border-white/5" id="ai-engine-section">
+    <section class="py-32 bg-white relative border-t border-zinc-200" id="ai-engine-section">
       <!-- Background pattern -->
-      <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)] opacity-30 pointer-events-none"></div>
+      <div class="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)] opacity-50 pointer-events-none"></div>
       
       <div class="container mx-auto px-6 max-w-7xl relative z-10">
         <div class="text-center mb-16 nv-header opacity-0">
-          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 mb-6 text-sm font-medium">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200 mb-6 text-sm font-medium">
             Interactive Visualizer
           </div>
-          <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">Neural Network Inference</h2>
-          <p class="text-zinc-400 text-lg max-w-2xl mx-auto">
+          <h2 class="text-4xl md:text-5xl font-display font-bold text-zinc-900 mb-6">Neural Network Inference</h2>
+          <p class="text-zinc-600 text-lg max-w-2xl mx-auto">
             Hover over the nodes to trace the 1D-CNN data flow. Raw IMU signals are processed through hidden convolutional layers to classify tremor severity in real-time.
           </p>
         </div>
 
-        <div class="glass-panel p-4 md:p-8 overflow-hidden relative w-full flex justify-center items-center shadow-2xl shadow-indigo-500/5 nv-canvas opacity-0 group">
+        <div class="glass-panel p-4 md:p-8 overflow-hidden relative w-full flex justify-center items-center shadow-2xl shadow-indigo-500/5 nv-canvas opacity-0 group bg-zinc-50 border-zinc-200">
           <svg viewBox="0 0 1000 500" class="w-full h-auto max-w-5xl" style="max-height: 600px;">
             <defs>
               <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
@@ -60,8 +60,8 @@ interface Link {
                 [attr.y2]="link.target.y"
                 class="transition-all duration-300 pointer-events-none"
                 [ngClass]="{
-                  'stroke-indigo-400/60 stroke-[2px]': isLinkActive(link),
-                  'stroke-white/5 stroke-[1px]': !isLinkActive(link)
+                  'stroke-indigo-500/60 stroke-[2px]': isLinkActive(link),
+                  'stroke-zinc-200 stroke-[1px]': !isLinkActive(link)
                 }"
               ></line>
             }
@@ -101,12 +101,12 @@ interface Link {
                   [attr.cx]="node.x" 
                   [attr.cy]="node.y" 
                   r="6"
-                  class="fill-zinc-950 transition-colors duration-300"
+                  class="fill-white transition-colors duration-300"
                   [ngClass]="{
-                    'stroke-emerald-400': node.layer === 0,
-                    'stroke-cyan-400': node.layer > 0 && node.layer < layers.length - 1,
-                    'stroke-indigo-400': node.layer === layers.length - 1,
-                    'stroke-[3px] filter drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]': hoveredNode() === node.id || isActiveRelated(node.id),
+                    'stroke-emerald-500': node.layer === 0,
+                    'stroke-cyan-500': node.layer > 0 && node.layer < layers.length - 1,
+                    'stroke-indigo-500': node.layer === layers.length - 1,
+                    'stroke-[3px] filter drop-shadow-[0_0_8px_rgba(0,0,0,0.1)]': hoveredNode() === node.id || isActiveRelated(node.id),
                     'stroke-[2px]': hoveredNode() !== node.id && !isActiveRelated(node.id)
                   }"
                 ></circle>
@@ -119,7 +119,7 @@ interface Link {
                     [attr.text-anchor]="node.layer === 0 ? 'end' : 'start'"
                     class="text-xs font-mono transition-colors duration-300 select-none pointer-events-none"
                     [ngClass]="{
-                      'fill-white font-bold': hoveredNode() === node.id || isActiveRelated(node.id),
+                      'fill-zinc-900 font-bold': hoveredNode() === node.id || isActiveRelated(node.id),
                       'fill-zinc-500': hoveredNode() !== node.id && !isActiveRelated(node.id)
                     }"
                   >
@@ -130,9 +130,9 @@ interface Link {
             }
 
             <!-- Layer Titles -->
-            <text x="166" y="40" class="fill-emerald-400/50 text-xs font-mono font-bold tracking-widest text-anchor-middle pointer-events-none">INPUT SENSORS</text>
-            <text x="500" y="40" class="fill-cyan-400/50 text-xs font-mono font-bold tracking-widest text-anchor-middle pointer-events-none">HIDDEN LAYERS</text>
-            <text x="833" y="40" class="fill-indigo-400/50 text-xs font-mono font-bold tracking-widest text-anchor-middle pointer-events-none">CLASSIFICATION</text>
+            <text x="166" y="40" class="fill-zinc-400 text-xs font-mono font-bold tracking-widest text-anchor-middle pointer-events-none">INPUT SENSORS</text>
+            <text x="500" y="40" class="fill-zinc-400 text-xs font-mono font-bold tracking-widest text-anchor-middle pointer-events-none">HIDDEN LAYERS</text>
+            <text x="833" y="40" class="fill-zinc-400 text-xs font-mono font-bold tracking-widest text-anchor-middle pointer-events-none">CLASSIFICATION</text>
           </svg>
         </div>
       </div>

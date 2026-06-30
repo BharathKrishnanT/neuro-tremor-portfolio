@@ -27,29 +27,29 @@ import Lenis from 'lenis';
   ],
   template: `
     <!-- Main Navbar -->
-    <nav class="fixed top-0 inset-x-0 z-50 bg-zinc-950/80 backdrop-blur-md border-b border-white/5 opacity-0 -translate-y-4" id="main-nav">
+    <nav class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-md border-b border-zinc-200 opacity-0 -translate-y-4" id="main-nav">
       <div class="container mx-auto px-6 h-16 flex items-center justify-between">
-        <div class="font-display font-bold text-white tracking-tight flex items-center gap-2">
-          <mat-icon class="text-emerald-400">scatter_plot</mat-icon>
+        <div class="font-display font-bold text-zinc-900 tracking-tight flex items-center gap-2">
+          <mat-icon class="text-emerald-500">scatter_plot</mat-icon>
           NeuroTremor
         </div>
-        <div class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
-          <a href="#stats-section" [class.text-white]="activeSection() === 'stats-section'" class="hover:text-white transition-colors">Impact</a>
-          <a href="#architecture-section" [class.text-white]="activeSection() === 'architecture-section'" class="hover:text-white transition-colors">Architecture</a>
-          <a href="#ai-engine-section" [class.text-white]="activeSection() === 'ai-engine-section'" class="hover:text-white transition-colors">AI Engine</a>
-          <a href="#dashboard-section" [class.text-white]="activeSection() === 'dashboard-section'" class="hover:text-white transition-colors">Dashboard</a>
-          <a href="#evaluation-section" [class.text-white]="activeSection() === 'evaluation-section'" class="hover:text-white transition-colors">Evaluation</a>
-          <a href="#references-section" [class.text-white]="activeSection() === 'references-section'" class="hover:text-white transition-colors">References</a>
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-500">
+          <a href="#stats-section" [class.text-zinc-900]="activeSection() === 'stats-section'" class="hover:text-zinc-900 transition-colors">Impact</a>
+          <a href="#architecture-section" [class.text-zinc-900]="activeSection() === 'architecture-section'" class="hover:text-zinc-900 transition-colors">Architecture</a>
+          <a href="#ai-engine-section" [class.text-zinc-900]="activeSection() === 'ai-engine-section'" class="hover:text-zinc-900 transition-colors">AI Engine</a>
+          <a href="#dashboard-section" [class.text-zinc-900]="activeSection() === 'dashboard-section'" class="hover:text-zinc-900 transition-colors">Dashboard</a>
+          <a href="#evaluation-section" [class.text-zinc-900]="activeSection() === 'evaluation-section'" class="hover:text-zinc-900 transition-colors">Evaluation</a>
+          <a href="#references-section" [class.text-zinc-900]="activeSection() === 'references-section'" class="hover:text-zinc-900 transition-colors">References</a>
         </div>
         <div>
-          <button class="px-4 py-2 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full text-sm font-medium hover:bg-emerald-500/20 transition-colors">
+          <button class="px-4 py-2 bg-emerald-500/10 text-emerald-600 border border-emerald-500/20 rounded-full text-sm font-medium hover:bg-emerald-500/20 transition-colors">
             Connect Pen
           </button>
         </div>
       </div>
     </nav>
     
-    <main class="min-h-screen bg-zinc-950 selection:bg-emerald-500/30 selection:text-emerald-200">
+    <main class="min-h-screen bg-zinc-50 selection:bg-emerald-500/30 selection:text-emerald-900">
       <div class="section-container"><app-hero></app-hero></div>
       <div class="section-container"><app-stats></app-stats></div>
       <div class="section-container"><app-architecture></app-architecture></div>

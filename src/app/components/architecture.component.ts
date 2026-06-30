@@ -8,35 +8,35 @@ import { animate, inView, stagger } from 'motion';
   imports: [MatIconModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <section class="py-32 bg-zinc-900 relative overflow-hidden" id="architecture-section">
-      <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+CgkJPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSJ0cmFuc3BhcmVudCIvPgoJCTxwYXRoIGQ9Ik0wIDEwaDQwTTAgMjBoNDBNMCAzMGg0ME0xMCAwdjQwTTIwIDB2NDBNezAgMHY0MCIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDMpIiBzdHJva2Utd2lkdGg9IjEiLz4KCTwvc3ZnPg==')] opacity-50"></div>
+    <section class="py-32 bg-zinc-50 relative overflow-hidden" id="architecture-section">
+      <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+CgkJPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSJ0cmFuc3BhcmVudCIvPgoJCTxwYXRoIGQ9Ik0wIDEwaDQwTTAgMjBoNDBNMCAzMGg0ME0xMCAwdjQwTTIwIDB2NDBNezAgMHY0MCIgc3Ryb2tlPSJyZ2JhKDAsMCwwLDAuMDMpIiBzdHJva2Utd2lkdGg9IjEiLz4KCTwvc3ZnPg==')] opacity-50"></div>
       
       <div class="container mx-auto px-6 max-w-7xl relative z-10">
         <div class="text-center mb-24 arch-header opacity-0">
-          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-6 text-sm font-medium">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-100 text-cyan-700 border border-cyan-200 mb-6 text-sm font-medium">
             System Architecture
           </div>
-          <h2 class="text-4xl md:text-6xl font-display font-bold text-white mb-6">Hardware Meets Edge AI</h2>
-          <p class="text-zinc-400 text-lg md:text-xl max-w-3xl mx-auto">An end-to-end pipeline from physical biomotor capture to neural network inference, entirely without cloud dependencies.</p>
+          <h2 class="text-4xl md:text-6xl font-display font-bold text-zinc-900 mb-6">Hardware Meets Edge AI</h2>
+          <p class="text-zinc-600 text-lg md:text-xl max-w-3xl mx-auto">An end-to-end pipeline from physical biomotor capture to neural network inference, entirely without cloud dependencies.</p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <!-- Hardware Column -->
           <div class="space-y-6">
-            <h3 class="text-2xl font-display font-bold text-white mb-8 border-b border-white/10 pb-4">Hardware Stack</h3>
+            <h3 class="text-2xl font-display font-bold text-zinc-900 mb-8 border-b border-zinc-200 pb-4">Hardware Stack</h3>
             
             @for (hw of hardware; track hw.title) {
               <div class="glass-card p-6 arch-card opacity-0 group hover:scale-[1.02] hover:shadow-2xl hover:shadow-cyan-500/10 transition-all duration-300">
                 <div class="flex items-start gap-4">
-                  <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-cyan-500/10 group-hover:border-cyan-500/30 transition-colors">
-                    <mat-icon class="text-zinc-400 group-hover:text-cyan-400 transition-colors">{{ hw.icon }}</mat-icon>
+                  <div class="w-12 h-12 rounded-xl bg-zinc-100 border border-zinc-200 flex items-center justify-center shrink-0 group-hover:bg-cyan-50 border-cyan-100 transition-colors">
+                    <mat-icon class="text-zinc-500 group-hover:text-cyan-600 transition-colors">{{ hw.icon }}</mat-icon>
                   </div>
                   <div>
-                    <h4 class="text-xl font-bold text-white mb-2 font-display">{{ hw.title }}</h4>
-                    <p class="text-zinc-400 text-sm mb-4 leading-relaxed">{{ hw.desc }}</p>
+                    <h4 class="text-xl font-bold text-zinc-900 mb-2 font-display">{{ hw.title }}</h4>
+                    <p class="text-zinc-600 text-sm mb-4 leading-relaxed">{{ hw.desc }}</p>
                     <div class="flex flex-wrap gap-2">
                       @for (tag of hw.tags; track tag) {
-                        <span class="text-xs font-mono px-2 py-1 bg-white/5 rounded text-zinc-300 border border-white/5">{{ tag }}</span>
+                        <span class="text-xs font-mono px-2 py-1 bg-zinc-100 rounded text-zinc-600 border border-zinc-200">{{ tag }}</span>
                       }
                     </div>
                   </div>
@@ -47,20 +47,20 @@ import { animate, inView, stagger } from 'motion';
 
           <!-- Software Column -->
           <div class="space-y-6 lg:mt-24">
-            <h3 class="text-2xl font-display font-bold text-white mb-8 border-b border-white/10 pb-4 flex justify-end">Software & AI Stack</h3>
+            <h3 class="text-2xl font-display font-bold text-zinc-900 mb-8 border-b border-zinc-200 pb-4 flex justify-end">Software & AI Stack</h3>
             
             @for (sw of software; track sw.title) {
               <div class="glass-card p-6 arch-card opacity-0 group hover:scale-[1.02] hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-300">
                 <div class="flex items-start gap-4 flex-row-reverse text-right">
-                  <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/10 group-hover:border-emerald-500/30 transition-colors">
-                    <mat-icon class="text-zinc-400 group-hover:text-emerald-400 transition-colors">{{ sw.icon }}</mat-icon>
+                  <div class="w-12 h-12 rounded-xl bg-zinc-100 border border-zinc-200 flex items-center justify-center shrink-0 group-hover:bg-emerald-50 border-emerald-100 transition-colors">
+                    <mat-icon class="text-zinc-500 group-hover:text-emerald-600 transition-colors">{{ sw.icon }}</mat-icon>
                   </div>
                   <div>
-                    <h4 class="text-xl font-bold text-white mb-2 font-display">{{ sw.title }}</h4>
-                    <p class="text-zinc-400 text-sm mb-4 leading-relaxed">{{ sw.desc }}</p>
+                    <h4 class="text-xl font-bold text-zinc-900 mb-2 font-display">{{ sw.title }}</h4>
+                    <p class="text-zinc-600 text-sm mb-4 leading-relaxed">{{ sw.desc }}</p>
                     <div class="flex flex-wrap gap-2 justify-end">
                       @for (tag of sw.tags; track tag) {
-                        <span class="text-xs font-mono px-2 py-1 bg-white/5 rounded text-zinc-300 border border-white/5">{{ tag }}</span>
+                        <span class="text-xs font-mono px-2 py-1 bg-zinc-100 rounded text-zinc-600 border border-zinc-200">{{ tag }}</span>
                       }
                     </div>
                   </div>
