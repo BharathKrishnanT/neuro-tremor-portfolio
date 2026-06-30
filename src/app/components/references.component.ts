@@ -46,9 +46,9 @@ import { animate, inView, stagger } from 'motion';
             <table class="w-full text-left text-sm whitespace-nowrap">
               <thead class="bg-white/5 border-b border-white/10 text-zinc-300">
                 <tr>
-                  <th class="px-6 py-4 font-medium">Study</th>
-                  <th class="px-6 py-4 font-medium">Method</th>
-                  <th class="px-6 py-4 font-medium">Sensors</th>
+                  <th class="px-6 py-4 font-medium">Study & Method</th>
+                  <th class="px-6 py-4 font-medium">Sensors & Models</th>
+                  <th class="px-6 py-4 font-medium">Performance & Advantages</th>
                   <th class="px-6 py-4 font-medium">Limitations</th>
                   <th class="px-6 py-4 font-medium text-emerald-400">Our Improvement</th>
                 </tr>
@@ -56,11 +56,27 @@ import { animate, inView, stagger } from 'motion';
               <tbody class="divide-y divide-white/5 text-zinc-400">
                 @for (comp of comparisons; track comp.study) {
                   <tr class="hover:bg-white/5 transition-colors comp-row opacity-0">
-                    <td class="px-6 py-4 font-medium text-zinc-200">{{ comp.study }}</td>
-                    <td class="px-6 py-4">{{ comp.method }}</td>
-                    <td class="px-6 py-4">{{ comp.sensors }}</td>
+                    <td class="px-6 py-4">
+                      <div class="font-medium text-zinc-200">{{ comp.study }}</div>
+                      <div class="text-xs text-zinc-500 mt-1">{{ comp.method }}</div>
+                    </td>
+                    <td class="px-6 py-4">
+                      <div>{{ comp.sensors }}</div>
+                      <div class="text-xs text-zinc-500 mt-1 font-mono">{{ comp.aiModel }} | Dataset: {{ comp.dataset }}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-normal min-w-[200px]">
+                      <div class="font-medium text-zinc-300">{{ comp.accuracy }}</div>
+                      <div class="text-xs text-zinc-500 mt-1">{{ comp.advantages }}</div>
+                    </td>
                     <td class="px-6 py-4 whitespace-normal min-w-[200px]">{{ comp.limitations }}</td>
-                    <td class="px-6 py-4 text-emerald-400/90 whitespace-normal min-w-[250px]">{{ comp.improvement }}</td>
+                    <td class="px-6 py-4 text-emerald-400/90 whitespace-normal min-w-[250px]">
+                      {{ comp.improvement }}
+                      @if (comp.linkText) {
+                        <a [href]="comp.linkUrl" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-emerald-400 hover:text-emerald-300 ml-1 underline decoration-emerald-500/30 underline-offset-2">
+                          ({{ comp.linkText }})
+                        </a>
+                      }
+                    </td>
                   </tr>
                 }
               </tbody>
@@ -112,12 +128,84 @@ export class ReferencesComponent implements AfterViewInit {
   ];
 
   comparisons = [
-    { study: '2025 Shokrpour et al.', method: 'ML Review', sensors: 'Multiple', limitations: 'Not a hardware implementation', improvement: 'Integrate multimodal sensing in a portable smart pen' },
-    { study: '2024 Drotár et al.', method: 'Handwriting', sensors: 'Graphics tablet + pressure', limitations: 'Tablet-based, not portable', improvement: 'Replace tablet with IMU + FSR smart pen' },
-    { study: '2020 Rios-Urrego et al.', method: 'Handwriting', sensors: 'Digital handwriting', limitations: 'Offline analysis', improvement: 'Real-time embedded inference in browser' },
-    { study: '2020 San-Segundo et al.', method: 'Tremor Detection', sensors: 'Wrist accelerometer', limitations: 'Focuses only on tremor', improvement: 'Add handwriting and grip-force analysis' },
-    { study: '2022 Trabassi et al.', method: 'Gait Analysis', sensors: 'Single lumbar IMU', limitations: 'No handwriting analysis', improvement: 'Combine gait-independent handwriting biomarkers' },
-    { study: '2025 Sáez et al.', method: 'IoT Tremor Monitor', sensors: 'ESP32 + MPU6050', limitations: 'Tremor only', improvement: 'Extend to multimodal handwriting AI' }
+    { 
+      study: '2025 Shokrpour et al.', 
+      method: 'ML Review', 
+      sensors: 'Multiple', 
+      aiModel: 'SVM, RF, CNN',
+      dataset: 'Multiple',
+      accuracy: 'Review',
+      advantages: 'Comprehensive survey',
+      limitations: 'Not a hardware implementation', 
+      improvement: 'Integrate multimodal sensing in a portable smart pen',
+      linkText: 'Nature',
+      linkUrl: 'https://www.nature.com'
+    },
+    { 
+      study: '2024 Drotár et al.', 
+      method: 'Handwriting', 
+      sensors: 'Graphics tablet + pressure', 
+      aiModel: 'SVM',
+      dataset: 'PaHaW',
+      accuracy: '82.50%',
+      advantages: 'Pressure features improve diagnosis',
+      limitations: 'Tablet-based, not portable', 
+      improvement: 'Replace tablet with IMU + FSR smart pen',
+      linkText: 'arXiv',
+      linkUrl: 'https://arxiv.org/abs/2411.03044'
+    },
+    { 
+      study: '2020 Rios-Urrego et al.', 
+      method: 'Handwriting', 
+      sensors: 'Digital handwriting', 
+      aiModel: 'RF, SVM, KNN',
+      dataset: 'Handwriting dataset',
+      accuracy: '93.10%',
+      advantages: 'Strong feature engineering',
+      limitations: 'Offline analysis', 
+      improvement: 'Real-time embedded inference',
+      linkText: 'arXiv',
+      linkUrl: 'https://arxiv.org/abs/1903.08226'
+    },
+    { 
+      study: '2020 San-Segundo et al.', 
+      method: 'Tremor Detection', 
+      sensors: 'Wrist accelerometer', 
+      aiModel: 'Deep Neural Network',
+      dataset: 'Wearable data',
+      accuracy: 'High tremor detection performance',
+      advantages: 'Real-world wearable validation',
+      limitations: 'Focuses only on tremor', 
+      improvement: 'Add handwriting and grip-force analysis',
+      linkText: 'PMC',
+      linkUrl: 'https://pmc.ncbi.nlm.nih.gov/'
+    },
+    { 
+      study: '2022 Trabassi et al.', 
+      method: 'Gait Analysis', 
+      sensors: 'Single lumbar IMU', 
+      aiModel: 'SVM, RF, ANN',
+      dataset: 'IMU gait',
+      accuracy: 'SVM best performer',
+      advantages: 'Single wearable sensor',
+      limitations: 'No handwriting analysis', 
+      improvement: 'Combine gait-independent handwriting biomarkers',
+      linkText: 'PMC',
+      linkUrl: 'https://pmc.ncbi.nlm.nih.gov/'
+    },
+    { 
+      study: '2025 Sáez et al.', 
+      method: 'IoT Tremor Monitor', 
+      sensors: 'ESP32 + MPU6050', 
+      aiModel: 'Signal analysis',
+      dataset: 'Clinical evaluation',
+      accuracy: 'Validated prototype',
+      advantages: 'Low-cost IoT architecture',
+      limitations: 'Tremor only', 
+      improvement: 'Extend to multimodal handwriting AI',
+      linkText: 'MDPI',
+      linkUrl: 'https://www.mdpi.com'
+    }
   ];
 
   ngAfterViewInit() {
