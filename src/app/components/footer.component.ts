@@ -43,10 +43,10 @@ import { MatIconModule } from '@angular/material/icon';
           <div>
             <h4 class="text-zinc-900 font-bold mb-4 font-display">Project Info</h4>
             <ul class="space-y-2 text-sm text-zinc-600">
-              <li><a href="#" class="hover:text-emerald-600 transition-colors">Hackathon Presentation</a></li>
+              <li><a href="#achievements-section" class="hover:text-emerald-600 transition-colors">Hackathon & Funding</a></li>
               <li><a href="#" class="hover:text-emerald-600 transition-colors">Business Model</a></li>
               <li><a href="#" class="hover:text-emerald-600 transition-colors">Team & Mentors</a></li>
-              <li><a href="#" class="hover:text-emerald-600 transition-colors">Patent Info</a></li>
+              <li><a href="#achievements-section" class="hover:text-emerald-600 transition-colors">Patent Info</a></li>
             </ul>
           </div>
         </div>

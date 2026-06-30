@@ -6,6 +6,7 @@ import { ArchitectureComponent } from './components/architecture.component';
 import { NetworkVisualizerComponent } from './components/network-visualizer.component';
 import { DashboardPreviewComponent } from './components/dashboard-preview.component';
 import { EvaluationComponent } from './components/evaluation.component';
+import { AchievementsComponent } from './components/achievements.component';
 import { ReferencesComponent } from './components/references.component';
 import { FooterComponent } from './components/footer.component';
 import { animate, inView } from 'motion';
@@ -22,6 +23,7 @@ import Lenis from 'lenis';
     NetworkVisualizerComponent,
     DashboardPreviewComponent,
     EvaluationComponent,
+    AchievementsComponent,
     ReferencesComponent,
     FooterComponent
   ],
@@ -39,6 +41,7 @@ import Lenis from 'lenis';
           <a href="#ai-engine-section" [class.text-zinc-900]="activeSection() === 'ai-engine-section'" class="hover:text-zinc-900 transition-colors">AI Engine</a>
           <a href="#dashboard-section" [class.text-zinc-900]="activeSection() === 'dashboard-section'" class="hover:text-zinc-900 transition-colors">Dashboard</a>
           <a href="#evaluation-section" [class.text-zinc-900]="activeSection() === 'evaluation-section'" class="hover:text-zinc-900 transition-colors">Evaluation</a>
+          <a href="#achievements-section" [class.text-zinc-900]="activeSection() === 'achievements-section'" class="hover:text-zinc-900 transition-colors">Achievements</a>
           <a href="#references-section" [class.text-zinc-900]="activeSection() === 'references-section'" class="hover:text-zinc-900 transition-colors">References</a>
         </div>
         <div>
@@ -56,6 +59,7 @@ import Lenis from 'lenis';
       <div class="section-container"><app-network-visualizer></app-network-visualizer></div>
       <div class="section-container"><app-dashboard-preview></app-dashboard-preview></div>
       <div class="section-container"><app-evaluation></app-evaluation></div>
+      <div class="section-container"><app-achievements></app-achievements></div>
       <div class="section-container"><app-references></app-references></div>
     </main>
     
@@ -109,7 +113,7 @@ export class App implements AfterViewInit {
     });
 
     // Track active section for navigation highlighting
-    const sections = ['stats-section', 'architecture-section', 'ai-engine-section', 'dashboard-section', 'evaluation-section', 'references-section'];
+    const sections = ['stats-section', 'architecture-section', 'ai-engine-section', 'dashboard-section', 'evaluation-section', 'achievements-section', 'references-section'];
     
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
